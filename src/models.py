@@ -17,3 +17,6 @@ class Predict(Base):
     # y_true: Mapped[float | None]
     y_pred: Mapped[float | None]
     datatime: Mapped[datetime] = mapped_column(server_default=func.now())
+    
+    def __repr__(self) -> str:
+        return f"id: {self.id}, x: {self.x}, y_pred: {self.y_pred}, datatime: {self.datatime}"

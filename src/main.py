@@ -1,5 +1,5 @@
-from .kmean import KMean
 from .database import Database
+from .kmean import KMean
 from .logger import Logger
 
 logger = Logger(True).get_logger(__name__)
@@ -26,9 +26,9 @@ new_prediction = kmean.predict(dataframe, scale=True)
 
 new_prediction = new_prediction.select('features', 'prediction').toPandas().to_dict(orient='records')
 
-print(new_prediction)
+logger.info(new_prediction)
 s = next(db.get_session())
 db.create_record(s, new_prediction)
 
 predictions = db.get_predictions(s)
-logger.info(f'Predictions \n{predictions}')
+logger.info(f'Predictions from database: \n{predictions}')
